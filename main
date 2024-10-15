@@ -125,40 +125,40 @@ def hendler_message(message):
                 ANSWERS_USER += 1
                 SEND_QUESTION = False
                 quize_lukoil(message)
-        if TOPIC == 'Сириус':
-            if NUM_QUESTION >= len(QUESTIONS_SIRIUS):
-                bot.send_message(message.chat.id, "Количество правильных ответов - " + str(ANSWERS_USER))
-                bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_SIRIUS1))
-                bot.send_message(message.chat.id, "Чтобы начать снова введите /start")
-                ANSWERS_USER = 0
-                QUIZE_STARTED = False
-                TOPIC = ''
-                NUM_QUESTION = 0
-            elif not SEND_QUESTION:
+    if TOPIC == 'Сириус':
+        if NUM_QUESTION >= len(QUESTIONS_SIRIUS):
+            bot.send_message(message.chat.id, "Количество правильных ответов - " + str(ANSWERS_USER))
+            bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_SIRIUS1))
+            bot.send_message(message.chat.id, "Чтобы начать снова введите /start")
+            ANSWERS_USER = 0
+            QUIZE_STARTED = False
+            TOPIC = ''
+            NUM_QUESTION = 0
+        elif not SEND_QUESTION:
+            quize_sirius(message)
+        else:
+            ans = message.text
+            if ans == CORRECT_ANSWERS_SIRIUS[NUM_QUESTION - 1]:
+                ANSWERS_USER += 1
+                SEND_QUESTION = False
                 quize_sirius(message)
-            else:
-                ans = message.text
-                if ans == CORRECT_ANSWERS_SIRIUS[NUM_QUESTION - 1]:
-                    ANSWERS_USER += 1
-                    SEND_QUESTION = False
-                    quize_sirius(message)
-        if TOPIC == 'Общий_Кругозор':
-            if NUM_QUESTION >= len(QUESTIONS_ALL):
-                bot.send_message(message.chat.id, "Количество правильных ответов - " + str(ANSWERS_USER))
-                bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_ALL1))
-                bot.send_message(message.chat.id, "Чтобы начать снова введите /start")
-                ANSWERS_USER = 0
-                QUIZE_STARTED = False
-                TOPIC = ''
-                NUM_QUESTION = 0
-            elif not SEND_QUESTION:
+    if TOPIC == 'Общий_Кругозор':
+        if NUM_QUESTION >= len(QUESTIONS_ALL):
+            bot.send_message(message.chat.id, "Количество правильных ответов - " + str(ANSWERS_USER))
+            bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_ALL1))
+            bot.send_message(message.chat.id, "Чтобы начать снова введите /start")
+            ANSWERS_USER = 0
+            QUIZE_STARTED = False
+            TOPIC = ''
+            NUM_QUESTION = 0
+        elif not SEND_QUESTION:
+            quize_all(message)
+        else:
+            ans = message.text
+            if ans == CORRECT_ANSWERS_ALL[NUM_QUESTION - 1]:
+                ANSWERS_USER += 1
+                SEND_QUESTION = False
                 quize_all(message)
-            else:
-                ans = message.text
-                if ans == CORRECT_ANSWERS_ALL[NUM_QUESTION - 1]:
-                    ANSWERS_USER += 1
-                    SEND_QUESTION = False
-                    quize_all(message)
 
 
 bot.polling()
