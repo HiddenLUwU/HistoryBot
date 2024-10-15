@@ -1,30 +1,44 @@
-# а этот файл от предыдущего почти ничем не отличается, просто я его немного "причесала", решила в отдельный файл запихнуть чтобы случайно в старом ничего не испортить ^^"
+# а этот файл от предыдущего отличается тем, что тут я пофиксила некоторые баги, сделал бота более рабочим. Решила в отдельный файл запихнуть чтобы случайно в старом ничего не испортить ^^"
 import telebot
 from telebot import types
 # import random
 
-QUESTIONS_SIRIUS = ['a', 'a', 'a', 'a']
-CORRECT_ANSWERS_SIRIUS = ['a']
-CORRECT_ANSWERS_SIRIUS1 = 'a'
-ANSWERS_SIRIUS = [['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a']]
+# в первых трех блоках ниже - вопросы и ответы к вопросам. QUESTIONS_тема - вопросы по теме.
+# CORRECT_ANSWERS_тема - правильные ответы. CORRECT_ANSWERS_тема1 = это правильные ответы в одной строчке, их в конце
+# викторины выведет пользователю. ANSWERS_тема - варианты ответов на вопросы
+# здесь надо будет заполнять контент по виктроине (вопросы ответы и тд)
 
-QUESTIONS_LUKOIL = ['a', 'a', 'a', 'a']
-CORRECT_ANSWERS_LUKOIL = ['a']
-CORRECT_ANSWERS_LUKOIL1 = 'a'
-ANSWERS_LUKOIL = [['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a']]
+QUESTIONS_SIRIUS = ['sq1', 'sq2', 'sq3', 'sq4', 'sq5', 'sq6', 'sq7', 'sq8', 'sq9', 'sq10']
+CORRECT_ANSWERS_SIRIUS = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
+CORRECT_ANSWERS_SIRIUS1 = 'a, a, a, a, a, a, a, a, a, a, a'
+ANSWERS_SIRIUS = [['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'],
+                  ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'],
+                  ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a']]
 
-QUESTIONS_ALL = ['a', 'a', 'a', 'a']
-CORRECT_ANSWERS_ALL = ['a']
-CORRECT_ANSWERS_ALL1 = 'a'
-ANSWERS_ALL = [['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a']]
+QUESTIONS_LUKOIL = ['lq1', 'lq2', 'lq3', 'lq4', 'lq5', 'lq6', 'lq7', 'lq8', 'lq9', 'lq10']
+CORRECT_ANSWERS_LUKOIL = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
+CORRECT_ANSWERS_LUKOIL1 = 'a, a, a, a, a, a, a, a, a, a, a'
+ANSWERS_LUKOIL = [['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'],
+                  ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'],
+                  ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a']]
 
+QUESTIONS_ALL = ['aq1', 'aq2', 'aq3', 'aq4', 'aq5', 'aq6', 'aq7', 'aq8', 'aq9', 'aq10']
+CORRECT_ANSWERS_ALL = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
+CORRECT_ANSWERS_ALL1 = 'a, a, a, a, a, a, a, a, a, a, a'
+ANSWERS_ALL = [['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'],
+               ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a'],
+               ['a', 'a', 'a', 'a'], ['a', 'a', 'a', 'a']]
+
+# кусок кода ниже лучше не трогать
 BOT_TOKEN = '7430083940:AAHGv3qpzyrpUF9UZzHifKTUJ-TWZmZVhto'
 bot = telebot.TeleBot(BOT_TOKEN)
 SEND_QUESTION = False
 TOPIC = ''
 NUM_QUESTION = 0
-ANSWERS_USER = QUIZE_STARTED = False
+ANSWERS_USER = 0
+QUIZE_STARTED = False
 keyboard = types.ReplyKeyboardMarkup(row_width=3)
+# кусок кода выше лучше не трогать
 
 
 def quize_lukoil(message):
@@ -33,10 +47,10 @@ def quize_lukoil(message):
     button1 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][0])
     button2 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][1])
     button3 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][2])
-    button4 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][3])
-    keyboard_ans.add(button1, button2, button3, button4)
-    bot.send_message(message.chat.id, QUESTIONS_LUKOIL[NUM_QUESTION], reply_markup=keyboard_ans)
-    NUM_QUESTION += 1
+    button4 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][3])  # тут кнопкам с ответами присваивается текст
+    keyboard_ans.add(button1, button2, button3, button4)  # тут спавнятся кнопки
+    bot.send_message(message.chat.id, QUESTIONS_LUKOIL[NUM_QUESTION], reply_markup=keyboard_ans)  # бот отправляет сообщение
+    NUM_QUESTION += 1     # номер задания меняется на следующий
     SEND_QUESTION = True
 
 
@@ -66,6 +80,30 @@ def quize_sirius(message):
     SEND_QUESTION = True
 
 
+def quiz_end(message):
+    global TOPIC, SEND_QUESTION, NUM_QUESTION, ANSWERS_USER
+    keyboard = types.ReplyKeyboardMarkup(row_width=3)
+    button1 = types.KeyboardButton("/info")
+    button2 = types.KeyboardButton("/start")
+    button3 = types.KeyboardButton("/hello")
+    keyboard.add(button1, button2, button3)
+    bot.send_message(message.chat.id, "Чтобы начать снова введите /start", reply_markup=keyboard)
+    NUM_QUESTION += 1
+    SEND_QUESTION = True
+
+
+button1 = types.KeyboardButton("/info")
+button2 = types.KeyboardButton("/start")
+button3 = types.KeyboardButton("/hello")
+keyboard.add(button1, button2, button3)
+
+
+@bot.message_handler(commands=['info'])
+def send_info(message):
+    bot.send_message(message.chat.id,
+                     "возможно тут потом появится какая то инфа про проект", reply_markup=keyboard)
+
+
 @bot.message_handler(commands=['start', 'hello'])
 def start(message):
     photo = open('Test_pic_1.png', 'rb')
@@ -77,7 +115,10 @@ def start(message):
                            "3. ПАО «Лукойл»\n"
                            "############################\n"
                            "Каждая из викторин состоит из 10 вопросов. На каждый вопрос будет дано четыре варианта "
-                           "ответа. Вам необходимо выбрать один из них, нажав на одну из четырёх кнопок")
+                           "ответа. Вам нужно выбрать один из них, нажав на одну из четырёх кнопок")
+    bot.send_message(message.chat.id,
+                     "А теперь вам необходимо выбрать викторину, нажав на одну из трёх кнопок у вас в чате",
+                     reply_markup=keyboard)
 
 
 button1 = types.KeyboardButton("Лукойл")
@@ -88,39 +129,33 @@ keyboard.add(button1, button2, button3)
 
 @bot.message_handler(func=lambda message: True)
 def hendler_message(message):
-    bot.send_message(message.chat.id,
-                     "А теперь вам необходимо выбрать викторину, нажав на одну из трёх кнопок у вас в чате",
-                     reply_markup=keyboard)
-    # @bot.message_handler(commands=('info'))
-    # def send_info(message):
-    #     pass
     global TOPIC, SEND_QUESTION, NUM_QUESTION, ANSWERS_USER, QUIZE_STARTED
     global n
     n = 0  # BUTTONS
-    # if not QUIZE_STARTED:
-    if message.text == 'Лукойл':
-        TOPIC = 'Лукойл'
-        QUIZE_STARTED = True
-        bot.send_message(message.chat.id, 'Добро пожаловать в викторину ' + message.text)
-        quize_lukoil(message)
-    elif message.text == 'Сириус':
-        TOPIC = 'Сириус'
-        QUIZE_STARTED = True
-        bot.send_message(message.chat.id, 'Добро пожаловать в викторину ' + message.text)
-        quize_sirius(message)
-    elif message.text == 'Общий Кругозор':
-        TOPIC = 'Общий Кругозор'
-        QUIZE_STARTED = True
-        bot.send_message(message.chat.id, 'Добро пожаловать в викторину ' + message.text)
-        quize_all(message)
-    else:
-        bot.send_message(message.chat.id, 'Выберите одну из предложенных викторин ')
+    if not QUIZE_STARTED:
+        if message.text == 'Лукойл':
+            TOPIC = 'Лукойл'
+            QUIZE_STARTED = True
+            bot.send_message(message.chat.id, 'Добро пожаловать в викторину ' + message.text)
+            quize_lukoil(message)
+        elif message.text == 'Сириус':
+            TOPIC = 'Сириус'
+            QUIZE_STARTED = True
+            bot.send_message(message.chat.id, 'Добро пожаловать в викторину ' + message.text)
+            quize_sirius(message)
+        elif message.text == 'Общий Кругозор':
+            TOPIC = 'Общий Кругозор'
+            QUIZE_STARTED = True
+            bot.send_message(message.chat.id, 'Добро пожаловать в викторину ' + message.text)
+            quize_all(message)
+        else:
+            bot.send_message(message.chat.id, 'Выберите одну из предложенных викторин')
     if TOPIC == 'Лукойл':
         if NUM_QUESTION >= len(QUESTIONS_LUKOIL):
             print(ANSWERS_USER)
-            bot.send_message(message.chat.id, "Количество правильных ответов - " + str(ANSWERS_USER))
+            bot.send_message(message.chat.id, "Количество правильных ответов: " + str(ANSWERS_USER))
             bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_LUKOIL1))
-            bot.send_message(message.chat.id, "Чтобы начать снова введите /start")
+            quiz_end(message)
             ANSWERS_USER = 0
             QUIZE_STARTED = False
             TOPIC = ''
@@ -133,40 +168,40 @@ def hendler_message(message):
                 ANSWERS_USER += 1
                 SEND_QUESTION = False
                 quize_lukoil(message)
-        if TOPIC == 'Сириус':
-            if NUM_QUESTION >= len(QUESTIONS_SIRIUS):
-                bot.send_message(message.chat.id, "Количество правильных ответов - " + str(ANSWERS_USER))
-                bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_SIRIUS1))
-                bot.send_message(message.chat.id, "Чтобы начать снова введите /start")
-                ANSWERS_USER = 0
-                QUIZE_STARTED = False
-                TOPIC = ''
-                NUM_QUESTION = 0
-            elif not SEND_QUESTION:
+    if TOPIC == 'Сириус':
+        if NUM_QUESTION >= len(QUESTIONS_SIRIUS):
+            bot.send_message(message.chat.id, "Количество правильных ответов: " + str(ANSWERS_USER))
+            bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_SIRIUS1))
+            quiz_end(message)
+            ANSWERS_USER = 0
+            QUIZE_STARTED = False
+            TOPIC = ''
+            NUM_QUESTION = 0
+        elif not SEND_QUESTION:
+            quize_sirius(message)
+        else:
+            ans = message.text
+            if ans == CORRECT_ANSWERS_SIRIUS[NUM_QUESTION - 1]:
+                ANSWERS_USER += 1
+                SEND_QUESTION = False
                 quize_sirius(message)
-            else:
-                ans = message.text
-                if ans == CORRECT_ANSWERS_SIRIUS[NUM_QUESTION - 1]:
-                    ANSWERS_USER += 1
-                    SEND_QUESTION = False
-                    quize_sirius(message)
-        if TOPIC == 'Общий Кругозор':
-            if NUM_QUESTION >= len(QUESTIONS_ALL):
-                bot.send_message(message.chat.id, "Количество правильных ответов - " + str(ANSWERS_USER))
-                bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_ALL1))
-                bot.send_message(message.chat.id, "Чтобы начать снова введите /start")
-                ANSWERS_USER = 0
-                QUIZE_STARTED = False
-                TOPIC = ''
-                NUM_QUESTION = 0
-            elif not SEND_QUESTION:
+    if TOPIC == 'Общий Кругозор':
+        if NUM_QUESTION >= len(QUESTIONS_ALL):
+            bot.send_message(message.chat.id, "Количество правильных ответов: " + str(ANSWERS_USER))
+            bot.send_message(message.chat.id, "Правильные ответы: " + str(CORRECT_ANSWERS_ALL1))
+            quiz_end(message)
+            ANSWERS_USER = 0
+            QUIZE_STARTED = False
+            TOPIC = ''
+            NUM_QUESTION = 0
+        elif not SEND_QUESTION:
+            quize_all(message)
+        else:
+            ans = message.text
+            if ans == CORRECT_ANSWERS_ALL[NUM_QUESTION - 1]:
+                ANSWERS_USER += 1
+                SEND_QUESTION = False
                 quize_all(message)
-            else:
-                ans = message.text
-                if ans == CORRECT_ANSWERS_ALL[NUM_QUESTION - 1]:
-                    ANSWERS_USER += 1
-                    SEND_QUESTION = False
-                    quize_all(message)
 
 
 bot.polling()
