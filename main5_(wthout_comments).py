@@ -31,10 +31,10 @@ def quize_lukoil(message):
     button1 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][0])
     button2 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][1])
     button3 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][2])
-    button4 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][3])  # тут кнопкам с ответами присваивается текст
-    keyboard_ans.add(button1, button2, button3, button4)  # тут спавнятся кнопки
-    bot.send_message(message.chat.id, str(NUM_QUESTION + 1) + '. ' + QUESTIONS_LUKOIL[NUM_QUESTION], reply_markup=keyboard_ans)  # бот отправляет сообщение
-    NUM_QUESTION += 1     # номер задания меняется на следующий
+    button4 = types.KeyboardButton(ANSWERS_LUKOIL[NUM_QUESTION][3]) 
+    keyboard_ans.add(button1, button2, button3, button4)
+    bot.send_message(message.chat.id, str(NUM_QUESTION + 1) + '. ' + QUESTIONS_LUKOIL[NUM_QUESTION], reply_markup=keyboard_ans)
+    NUM_QUESTION += 1
     SEND_QUESTION = True
 
 
