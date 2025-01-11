@@ -79,26 +79,26 @@ def quiz(message):
 
 
 def quiz_end(message):
-    keyboard = types.ReplyKeyboardMarkup(row_width=3)
+    keyboardsus = types.ReplyKeyboardMarkup(row_width=3)
     button1 = types.KeyboardButton("/info")
     button2 = types.KeyboardButton("/start")
-    keyboard.add(button1, button2)
-    bot.send_message(message.chat.id, "Чтобы начать снова введите /start", reply_markup=keyboard)
+    keyboardsus.add(button1, button2)
+    bot.send_message(message.chat.id, "Чтобы начать снова введите /start", reply_markup=keyboardsus)
     d[message.from_user.id][6] += 1
     d[message.from_user.id][8] = True
 
 
 def add_q_buttons(message):
-    keyboard = types.ReplyKeyboardMarkup(row_width=3)
+    keyboardsus = types.ReplyKeyboardMarkup(row_width=3)
     button1 = types.KeyboardButton("Викторина")
     button2 = types.KeyboardButton("Справочник")
     button3 = types.KeyboardButton("Интересные факты")
-    keyboard.add(button1, button2, button3)
+    keyboardsus.add(button1, button2, button3)
     bot.send_message(message.chat.id,
                      "А теперь выберите одну из трех кнопок ниже. Кнопка \"Викторина\" начнет викторину, "
                      "\"Справочник\" расскажет вам о любом событии или дате ВОВ, а \"Интересные факты\" "
                      "- интересные факты к 80-летию победы",
-                     reply_markup=keyboard)
+                     reply_markup=keyboardsus)
     d[message.from_user.id][8] = True
 
 
