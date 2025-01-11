@@ -1,5 +1,6 @@
 import telebot
 from telebot import types
+import sqlite3
 import random
 
 
@@ -20,27 +21,18 @@ def make_quiz(message):
     answers_quiz = []
     questions_quiz = []
     correct_answers_quiz_2 = ''
-    with open('questions.txt', encoding='utf-8') as f:
-        questions = f.readlines()
-        tasks_quiz = random.sample(questions, 10)
+    connect = sqlite3.connect('test_bd')
+    cur = connect.cursor()
+    questions = cur.execute(f"SELECT * FROM questions").fetchall()
+    connect.close()
+    tasks_quiz = random.sample(questions, 15)
     print(tasks_quiz)
     for el in tasks_quiz:
-        g = el.split("$")
-        questions_quiz.append(g[0])
-        del g[0]
-        for elem in g:
-            if "&" in elem and "\n" in elem:
-                correct_answers_quiz.append(elem[:-2])
-                correct_answers_quiz_1.append(elem[:-2])
-                one_answers_quiz.append(elem[:-2])
-            elif "&" in elem:
-                correct_answers_quiz.append(elem[:-1])
-                correct_answers_quiz_1.append(elem[:-1])
-                one_answers_quiz.append(elem[:-1])
-            elif "\n" in elem:
-                one_answers_quiz.append(elem[:-1])
-            else:
-                one_answers_quiz.append(elem)
+        questions_quiz.append(el[1])
+        for x in range(2, 6):
+            one_answers_quiz.append(el[x])
+        correct_answers_quiz.append(el[6])
+        correct_answers_quiz_1.append(el[6])
         answers_quiz.append(one_answers_quiz)
         one_answers_quiz = []
     correct_answers_quiz_2 = ', '.join(correct_answers_quiz_1)
@@ -183,3 +175,4 @@ def hendler_message(message):
 
 
 bot.polling()
+
