@@ -1,3 +1,6 @@
+# отсюда надо брать этот файл, participant.jpg, winner.jpg, test_bd и все
+
+
 import telebot
 from telebot import types
 import sqlite3
