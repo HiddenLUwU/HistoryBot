@@ -46,7 +46,6 @@ def make_quiz(message):
     d[message.from_user.id][5] = correct_answers_quiz_2
 
 
-# кусок кода ниже лучше не трогать
 BOT_TOKEN = '7430083940:AAHGv3qpzyrpUF9UZzHifKTUJ-TWZmZVhto'
 bot = telebot.TeleBot(BOT_TOKEN)
 send_question = False
@@ -56,9 +55,6 @@ answers_user = 0
 quiz_started = False
 keyboardsusss = types.ReplyKeyboardMarkup(row_width=3)
 d = dict()
-
-
-# кусок кода выше лучше не трогать
 
 
 def quiz(message):
