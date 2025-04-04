@@ -1,7 +1,3 @@
-# отсюда надо брать этот файл, participant.jpg, winner.jpg, test_bd и все
-# остальные файлы нужны были в процессе разработки и почему-то не удаляются, не знаю в чем причина, скорее всего я нажимаю не туда
-
-
 import telebot
 from telebot import types
 import sqlite3
